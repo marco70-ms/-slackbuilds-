@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for smart
+# Written by Marcin <slociu@wp.pl>
+
 PRGNAM=sshguard
 VERSION=${VERSION:-2.4.1}
 BUILD=${BUILD:-1}
