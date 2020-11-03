@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for smart
+# Written by Marcin <slociu@wp.pl>
+
 PRGNAM=partclone
 VERSION=${VERSION:-0.3.13}
 BUILD=${BUILD:-1}
