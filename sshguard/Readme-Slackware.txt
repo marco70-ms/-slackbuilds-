@@ -72,7 +72,7 @@ IPV4_SUBNET=24
 # !! Warning: These features may not work correctly with sandboxing. !!
 
 # Full path to PID file (optional, no default)
-#PID_FILE=/run/sshguard.pid
+#PID_FILE=/var/run/sshguard.pid
 
 # Colon-separated blacklist threshold and full path to blacklist file.
 # (optional, no default)
