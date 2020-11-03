@@ -5,7 +5,7 @@
 
 PRGNAM=smart
 VERSION=${VERSION:-1.4.1}
-BUILD=${BUILD:-3}
+BUILD=${BUILD:-1}
 TAG=${TAG:-ms}
 
 if [ -z "$ARCH" ]; then
