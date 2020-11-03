@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # Slackware build script for kadu
-
 # Written by marco slociu@wp.pl
 
 PRGNAM=kadu
