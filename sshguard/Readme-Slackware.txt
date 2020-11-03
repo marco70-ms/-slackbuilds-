@@ -1,4 +1,4 @@
-### Slackware64-current
+### slackware64-current
 
 # iptables -N sshguard
 
