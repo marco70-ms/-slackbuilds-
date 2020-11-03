@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Slackware build script for smart
+# Slackware build script for sshguard
 # Written by Marcin <slociu@wp.pl>
 
 PRGNAM=sshguard
