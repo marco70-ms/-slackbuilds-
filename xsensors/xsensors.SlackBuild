@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for smart
+# Written by Marcin <slociu@wp.pl>
+
 PKGNAM=xsensors
 VERSION=${VERSION:-$(echo $(basename $(echo $PRGNAM-*.tar.xz | cut -f 2 -d -) .tar.xz) | cut -f 2 -d -)}
 BUILD=${BUILD:-1}
