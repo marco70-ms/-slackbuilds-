@@ -73,7 +73,7 @@ cat $CWD/rc.$PRGNAM > $PKG/etc/rc.d/rc.$PRGNAM
 cat <<EOF >$PKG/etc/sshguard.conf.new
 FILES="/var/log/messages /var/log/secure /var/log/maillog"
 BLACKLIST_FILE=100:/var/lib/$PRGNAM/blacklist.db
-BACKEND="/usr/lib/sshg-fw-iptables"
+BACKEND="/usr/libexec/sshg-fw-iptables"
 THRESHOLD=20
 BLOCK_TIME=180
 DETECTION_TIME=3600
