@@ -1,0 +1,47 @@
+#!/bin/sh
+
+PIDFILE=/var/run/sshguard.pid
+
+sshguard_start() {
+  if test -r $PIDFILE && ps $(cat $PIDFILE) >& /dev/null; then
+    echo "sshguard already running!"
+  else
+    /usr/sbin/sshguard -i $PIDFILE 1>/dev/null &
+    echo "Starting sshguard ..."
+  fi
+}
+
+sshguard_stop() {
+  if [ -r $PIDFILE ]; then
+    echo -n "Stopping sshguard ..."
+    pid=$(cat $PIDFILE)
+    kill $pid 1>/dev/null &
+    sleep 2
+    echo "done."
+  else
+    # Just in case:
+    killall sshguard 2> /dev/null
+    rm -f $PIDFILE
+    echo "done."
+  fi
+}
+
+sshguard_restart() {
+  sshguard_stop
+  sleep 2
+  sshguard_start
+}
+
+case "$1" in
+'start')
+  sshguard_start
+  ;;
+'stop')
+  sshguard_stop
+  ;;
+'restart')
+  sshguard_restart
+  ;;
+*)
+  echo "usage: $0 start|stop|restart"
+esac
