@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Slackware build script for smart
+# Slackware build script for xsensors
 # Written by Marcin <slociu@wp.pl>
 
 PKGNAM=xsensors
