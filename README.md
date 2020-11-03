@@ -1,1 +1,2 @@
 SlackBuilds
+slackware64-current
