@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for grub-customizer
+# Written by Marcin slociu@wp.pl
+
 PRGNAM=grub-customizer
 VERSION=${VERSION:-5.1.0}
 BUILD=${BUILD:-1}
