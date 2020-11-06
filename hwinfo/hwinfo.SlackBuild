@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for hwinfo
+# Written by Marcin <slociu@wp.pl>
+
 PRGNAM=hwinfo
 VERSION=${VERSION:-21.70}
 BUILD=${BUILD:-1}
