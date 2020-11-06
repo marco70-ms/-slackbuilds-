@@ -1,0 +1,13 @@
+diff -U 3 -H -d -r -N -- a/ipc_remote.cc b/ipc_remote.cc
+--- a/ipc_remote.cc	2016-07-02 20:06:10.000000000 +0200
++++ b/ipc_remote.cc	2020-11-06 20:27:20.000000000 +0100
+@@ -941,8 +941,8 @@
+ }
+ 
+ typedef struct {
+-	struct cmsghdr header;
+ 	int            fd;
++	struct cmsghdr header;
+ } __attribute__((packed)) cmsg_fd;
+ 
+ int RootIPCRemote::SendDescriptor(int in_fd) {
