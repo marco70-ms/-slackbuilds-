@@ -290,7 +290,7 @@ mv ffmpeg-$FFMPEG ffmpeg
 # Apply patches:
 zcat $SRCDIR/patches/bug490-demux_lavf.patch.gz | patch -p0 --verbose || exit 1
 zcat $SRCDIR/patches/MPlayer-fix-dvd-crash.patch.gz | patch -p0 --verbose || exit 1
-zcat $SRCDIR/patches/include-samba-4.0.patch.gz | patch -p0 --verbose || exit 1
+zcat $SRCDIR/patches/include-samba-4.0.patch.gz | patch -p1 --verbose || exit 1
 zcat $SRCDIR/patches/MPlayer-column_fidct_mmx.patch.gz | patch -p0 --verbose || exit 1
 
 # Determine what X we're running (the modular X returns the prefix
