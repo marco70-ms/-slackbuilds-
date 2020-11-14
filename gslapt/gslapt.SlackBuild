@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for gslapt
+# Written by Marcin <slociu@wp.pl>
+
 PRGNAM=gslapt
 VERSION=${VERSION:-0.5.6}
 BUILD=${BUILD:-2}
