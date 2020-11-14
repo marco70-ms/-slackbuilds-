@@ -1,0 +1,11 @@
+curl
+cyrus-sasl
+glibc-solibs
+gpgme
+libassuan
+libgpg-error
+libidn
+libssh2
+openldap-client
+openssl-solibs
+zlib
