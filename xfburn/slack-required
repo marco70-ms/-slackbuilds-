@@ -1,0 +1,9 @@
+libburn
+libisofs
+gtk3
+libxfce4ui
+libxfce4util
+exo
+gst-plugins-base
+libgudev
+desktop-file-utils
