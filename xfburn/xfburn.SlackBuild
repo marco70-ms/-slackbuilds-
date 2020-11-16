@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for xfburn
+# Written by Marcin <slociu@wp.pl>
+
 PRGNAM=xfburn
 VERSION=${VERSION:-0.6.2}
 BUILD=${BUILD:-1}
