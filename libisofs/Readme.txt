@@ -1,1 +1,3 @@
 https://dev.lovelyhq.com/libburnia
+
+http://files.libburnia-project.org/releases/libisofs-1.5.2.tar.gz
