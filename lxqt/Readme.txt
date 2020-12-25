@@ -1,6 +1,8 @@
 LXQT On slackware64-current
 =================
 
+2020.12.25
+
 ### deps
 # muparser \
 # openbox \
