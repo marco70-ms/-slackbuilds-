@@ -1,0 +1,2 @@
+# Fix the pt_BR translation (needs to be in UTF-8):
+cat $CWD/patch/lxinput-qt/lxqt-config-input_pt_BR_utf8.patch | patch -p1 --verbose || { touch ${SLACK_LXQT_BUILD_DIR}/${PKGNAME}.failed ; continue ; }
