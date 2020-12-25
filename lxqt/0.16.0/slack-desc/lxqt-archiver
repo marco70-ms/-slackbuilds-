@@ -1,0 +1,12 @@
+             |-----handy-ruler------------------------------------------------------|
+lxqt-archiver: lxqt-archiver (File Archiver)
+lxqt-archiver:
+lxqt-archiver: A simple & lightweight desktop-agnostic Qt file archiver
+lxqt-archiver:
+lxqt-archiver: The core I/O functions are ported from Engrampa (a Gnome File Roller
+lxqt-archiver: fork).
+lxqt-archiver:
+lxqt-archiver: This is only a front-end (a graphical interface) to archiving
+lxqt-archiver: programs like tar and zip.
+lxqt-archiver:
+lxqt-archiver:
