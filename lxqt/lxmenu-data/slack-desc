@@ -1,0 +1,12 @@
+           |-----handy-ruler------------------------------------------------------|
+lxmenu-data: lxmenu-data (LXDE freedesktop.org Compliant Menu Specs)
+lxmenu-data:
+lxmenu-data: This package provides files required to build freedesktop.org menu
+lxmenu-data: spec-compliant desktop menus for LXDE. The files are originally taken
+lxmenu-data: from gnome-menus, and some minor modifications were made.
+lxmenu-data:
+lxmenu-data:
+lxmenu-data:
+lxmenu-data:
+lxmenu-data:
+lxmenu-data:
