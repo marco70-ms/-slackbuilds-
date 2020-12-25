@@ -1,3 +1,6 @@
+LXQT On Slackware
+=================
+
 ### deps
 # muparser \
 # openbox \
