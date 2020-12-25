@@ -12,3 +12,14 @@ LXQT On slackware64-current
 # libfm \
 
 lxqt-0.16.0
+### base
+./lxqt.SlackBuild lxqt:lxqt-build-tools,libqtxdg,liblxqt,libsysstat,libconfig \
+,compton-conf,libfm-qt,lxqt-themes,lxqt-qtplugin,obconf-qt,pavucontrol-qt,qtermwidget
+
+### main
+./lxqt.SlackBuild:lximage-qt,lxqt-about,lxqt-admin,lxqt-archiver,lxqt-config \
+,lxqt-globalkeys,lxqt-notificationd,lxqt-openssh-askpass,lxqt-policykit,lxqt-session \
+,lxqt-sudo,pcmanfm-qt,qterminal,lxqt-panel,lxqt-powermanagement,lxqt-runner
+
+### extra
+./lxqt.SlackBuild extra:qps,screengrab
