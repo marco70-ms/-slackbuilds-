@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for lxmenu-data
+# Written by Marcin <slociu@wp.pl>
+
 PRGNAM=lxmenu-data
 VERSION=${VERSION:-0.1.5}
 BUILD=${BUILD:-1}
