@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for libfm
+# Written by Marcin <slociu@wp.pl>
+
 PRGNAM=libstatgrab
 VERSION=${VERSION:-0.92}
 BUILD=${BUILD:-1}
