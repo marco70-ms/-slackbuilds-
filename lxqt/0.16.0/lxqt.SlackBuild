@@ -25,8 +25,10 @@
 #   ./lxqt.SlackBuild base
 # To build only a single package, specify both the group name
 # and the name of the package, like:
-#   ./lxqt.SlackBuild base:menu-cache
+#   ./lxqt.SlackBuild lxqt:pcmanfm
 #   ./lxqt.SlackBuild lxqt:pcmanfm,lxqt-session
+
+# Modified 2020 by Marcin <slociu@wp.pl>
 
 CLEANUP=${CLEANUP:-"yes"} # clean up build directory after successful build.
 PRECHECK=${PRECHECK:-"no"} # don't let the script check the available sources.
