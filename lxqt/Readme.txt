@@ -25,3 +25,5 @@ lxqt-sudo,pcmanfm-qt,qterminal,lxqt-panel,lxqt-powermanagement,lxqt-runner
 
 ### extra
 ./lxqt.SlackBuild extra:qps,screengrab
+
+https://github.com/lxqt
