@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for libfm-extra
+# Written by Marcin <slociu@wp.pl>
+
 PRGNAM=libfm-extra
 SRCNAM=libfm
 VERSION=${VERSION:-1.3.1}
