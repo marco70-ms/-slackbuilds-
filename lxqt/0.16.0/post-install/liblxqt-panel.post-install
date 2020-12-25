@@ -1,0 +1,2 @@
+# Don't clobber config files
+mv $PKG/usr/share/lxqt/power.conf{,.new}
