@@ -1,0 +1,15 @@
+[ -x autogen.sh ] && ./autogen.sh
+
+LDFLAGS="$SLKLDFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+CFLAGS="$SLKCFLAGS" \
+./configure \
+  --prefix=/usr \
+  --libdir=/usr/lib${LIBDIRSUFFIX} \
+  --mandir=/usr/man \
+  --docdir=/usr/doc/${PKGNAME}-${MODULAR_PACKAGE_VERSION} \
+  --localstatedir=/var \
+  --sysconfdir=/etc \
+  --program-prefix= \
+  --program-suffix= \
+  --build=$TARGET
