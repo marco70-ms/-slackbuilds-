@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Slackware build script for muparser
+# Slackware build script for obconf
 # Written by Marcin <slociu@wp.pl>
 
 PRGNAM=obconf
@@ -116,10 +116,6 @@ tar -xvf ${SOURCE}
 cd ${PRGNAM}-${VERSION}
 chown -R root:root .
 chmod -R u+w,go+r-w,a+X-s .
-
-## Include a patch by Andrew Rowland to fix build errors:
-#cat $SRCDIR/obconf_git_preview.patch | patch -p1 --verbose \
-#  2>&1 | tee $OUTPUT/patch-$PRGNAM.log
 
 echo Building ...
 export LDFLAGS="$SLKLDFLAGS"
