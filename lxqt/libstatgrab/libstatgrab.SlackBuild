@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Slackware build script for libfm
+# Slackware build script for libstatgrab
 # Written by Marcin <slociu@wp.pl>
 
 PRGNAM=libstatgrab
