@@ -9,7 +9,7 @@ DL_BASE=(
   https://github.com/lxqt/lxqt-build-tools/releases/download/0.8.0/lxqt-build-tools-0.8.0.tar.xz
   https://github.com/lxqt/libqtxdg/releases/download/3.6.0/libqtxdg-3.6.0.tar.xz
   https://github.com/lxqt/liblxqt/releases/download/$LXQT/liblxqt-$LXQT.tar.xz
-  https://downloads.lxqt.org/libsysstat/0.3.2/libsysstat-0.4.4.tar.xz
+  https://github.com/lxqt/libsysstat/releases/download/0.4.4/libsysstat-0.4.4.tar.xz
   https://github.com/lxqt/compton-conf/releases/download/$LXQT/compton-conf-$LXQT.tar.xz
   https://github.com/lxqt/libfm-qt/releases/download/$LXQT/libfm-qt-$LXQT.tar.xz
   https://github.com/lxqt/lxqt-themes/releases/download/$LXQT/lxqt-themes-$LXQT.tar.xz
