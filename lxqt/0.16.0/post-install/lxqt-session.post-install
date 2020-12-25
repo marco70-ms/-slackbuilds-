@@ -1,0 +1,12 @@
+# Use some custom configs.
+cat $CWD/files/lxqt.conf > $PKG/usr/share/lxqt/lxqt.conf
+cat $CWD/files/session.conf > $PKG/usr/share/lxqt/session.conf
+
+# Don't clobber existing config files if any.
+for i in lxqt session windowmanagers; do
+  mv $PKG/usr/share/lxqt/$i.conf{,.new}
+done
+
+# I couldn't think of a better package to put this, so here it is.
+mkdir -p $PKG/etc/X11/xinit
+cp -v $CWD/files/xinitrc.lxqt $PKG/etc/X11/xinit

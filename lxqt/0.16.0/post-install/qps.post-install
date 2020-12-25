@@ -1,0 +1,5 @@
+# Provide a dsktop file for menus
+mkdir -p $PKG/usr/share/applications
+cp -v $CWD/files/qps.desktop $PKG/usr/share/applications
+
+mv $PKG/usr/share/man $PKG/usr

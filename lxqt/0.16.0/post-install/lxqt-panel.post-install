@@ -1,0 +1,3 @@
+# Add a .new suffix so we don't mangle an existing file:
+mv $PKG/usr/share/lxqt/panel.conf{,.new}
+

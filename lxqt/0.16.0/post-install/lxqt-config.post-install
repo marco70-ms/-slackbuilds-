@@ -1,0 +1,2 @@
+# Don't clobber config files
+mv $PKG/etc/xdg/menus/lxqt-config.menu{,.new}

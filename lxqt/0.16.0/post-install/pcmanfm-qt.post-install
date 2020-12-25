@@ -1,0 +1,5 @@
+# Use a custom config
+cat $CWD/files/settings.conf > $PKG/usr/share/pcmanfm-qt/lxqt/settings.conf
+
+# Don't clobber config files
+mv $PKG/usr/share/pcmanfm-qt/lxqt/settings.conf{,.new}
