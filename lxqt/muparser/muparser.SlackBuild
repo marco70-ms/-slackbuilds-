@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for muparser
+# Written by Marcin <slociu@wp.pl>
+
 PRGNAM=muparser
 VERSION=${VERSION:-2.3.2}
 BUILD=${BUILD:-1}
