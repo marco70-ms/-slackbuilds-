@@ -4,14 +4,14 @@ LXQT On slackware64-current
 2020.12.25
 
 ### deps
- muparser \
- openbox \
- obconf \
- libstatgrab \
- libfm-extra \
- lxmenu-data \
- menu-cache \
- libfm \
+ muparser
+ openbox
+ obconf
+ libstatgrab
+ libfm-extra
+ lxmenu-data
+ menu-cache
+ libfm
 
 lxqt-0.16.0
 
