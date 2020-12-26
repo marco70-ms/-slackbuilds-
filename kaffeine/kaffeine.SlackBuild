@@ -62,7 +62,6 @@ cd build
     -DLIB_SUFFIX=${LIBDIRSUFFIX} \
     -DMAN_INSTALL_DIR=/usr/man \
     -DCMAKE_BUILD_TYPE=Release ..
-
   make $NUMJOBS || make || exit 1
   make install DESTDIR=$PKG || exit 1
 cd -
