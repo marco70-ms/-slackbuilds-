@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Slackware build script for lxmenu-data
+# Slackware build script for menu-cache
 # Written by Marcin <slociu@wp.pl>
 
 PRGNAM=menu-cache
