@@ -25,11 +25,6 @@ in using openbox you can skip installing openbox and compiling obconf-qt.
 
 The real mandatory dependencies are related to Qt5 and the KDE Frameworks,
 upon which LXQT was built.
-Therefore the following packages should be obtained from my 'ktown'repository,
-http://bear.alienbase.nl/mirrors/alien-kde/ below the directory specific to
-your Slackware release and architecture.
-More specifically from its subdirectories 'deps', 'kde/frameworks',
-'kde/plasma' and 'kde/plasma-extra':
 
 # deps:
 libdbusmenu-qt
@@ -40,7 +35,7 @@ qt5
 qt5-webkit
 wayland
 
-# kde/frameworks:
+# kde:
 attica-framework
 baloo5
 bluez-qt
@@ -112,11 +107,7 @@ plasma-framework
 solid
 sonnet
 threadweaver
-
-# plasma:
 libkscreen2
-
-# plasma-extra:
 sddm
 
 Finally, you need the following packages from my main slackbuilds repository
