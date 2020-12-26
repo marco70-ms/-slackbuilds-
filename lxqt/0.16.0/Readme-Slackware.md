@@ -36,13 +36,13 @@ qt5-webkit
 wayland
 
 # kde:
-attica-framework
-baloo5
+attica
+baloo
 bluez-qt
 breeze-icons
 extra-cmake-modules
 frameworkintegration
-kactivities-framework
+kactivities
 kactivities-stats
 kapidox
 karchive
@@ -65,7 +65,7 @@ kdewebkit
 kdnssd
 kdoctools
 kemoticons
-kfilemetadata5
+kfilemetadata
 kglobalaccel
 kguiaddons
 khtml
@@ -100,18 +100,24 @@ kwidgetsaddons
 kwindowsystem
 kxmlgui
 kxmlrpcclient
+libkscreen
 modemmanager-qt
 networkmanager-qt
 oxygen-icons5
 plasma-framework
+sddm
 solid
 sonnet
 threadweaver
-libkscreen2
-sddm
 
 Finally, you need the following packages from my main slackbuilds repository
 at http://bear.alienbase.nl/mirrors/people/alien/slackbuilds/ :
 
 libstatgrab
+libfm
+libfm-extra
+lxmenu-data
+menu-cache
 muparser
+obconf
+openbox
