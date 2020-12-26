@@ -14,6 +14,7 @@ LXQT On slackware64-current
 # libfm \
 
 lxqt-0.16.0
+
 ### base
 ./lxqt.SlackBuild base:lxqt-build-tools,libqtxdg,liblxqt,libsysstat,libconfig, \
 compton-conf,libfm-qt,lxqt-themes,lxqt-qtplugin,obconf-qt,pavucontrol-qt,qtermwidget
