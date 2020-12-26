@@ -114,8 +114,6 @@ Finally, you need the following packages from my main slackbuilds repository
 at http://bear.alienbase.nl/mirrors/people/alien/slackbuilds/ :
 
 libstatgrab
-libfm
-libfm-extra
 lxmenu-data
 menu-cache
 muparser
