@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for featherpad
+# Written by Marcin <slociu@wp.pl>
+
 PRGNAM=featherpad
 VERSION=${VERSION:-0.16.0}
 SRCNAM=FeatherPad
