@@ -1,6 +1,7 @@
 #!/bin/sh
 
-
+# Slackware build script for kodi
+# Written by Marcin <slociu@wp.pl>
 
 PRGNAM=kodi
 VERSION=${VERSION:-18.9}
