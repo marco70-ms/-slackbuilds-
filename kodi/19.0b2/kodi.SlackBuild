@@ -96,13 +96,11 @@ cd -
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
   
-# Install manpages.
 mkdir -p $PKG/usr/man/man1
 for i in $PRGNAM.bin.1 $PRGNAM.1 $PRGNAM-standalone.1; do
   install -m 0644 docs/manpages/$i $PKG/usr/man/man1/$i
 done
 
-# Compress the man page(s):
 if [ -d $PKG/usr/man ]; then
   find $PKG/usr/man -type f -name "*.?" -exec gzip -9f {} \;
   for i in $(find $PKG/usr/man -type l -name "*.?") ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
