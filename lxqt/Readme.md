@@ -30,6 +30,3 @@ lxqt-sudo,pcmanfm-qt,qterminal,lxqt-panel,lxqt-powermanagement,lxqt-runner
 https://github.com/lxqt
 
 Thanks to Eric Hameleers :-)
-
-If something doesn't work, please write
-Thank you Marcin
