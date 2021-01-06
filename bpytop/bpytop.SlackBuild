@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for bpytop
+# Written by Marcin slociu@wp.pl
+
 PKGNAM=bpytop
 VERSION=${VERSION:-$(echo $PKGNAM-*.tar.?z | rev | cut -f 3- -d . | cut -f 1 -d - | rev)}
 BUILD=${BUILD:-1}
