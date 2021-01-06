@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for python-psutil
+# Written by Marcin slociu@wp.pl
+
 PRGNAM=python-psutil
 SRCNAM=psutil-release
 VERSION=${VERSION:-5.8.0}
