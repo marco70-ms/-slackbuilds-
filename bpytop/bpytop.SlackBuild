@@ -20,8 +20,6 @@ CWD=$(pwd)
 TMP=${TMP:-/tmp/txz}
 PKG=$TMP/package-$PKGNAM
 
-NUMJOBS=${NUMJOBS:-" -j$(expr $(nproc) + 1) "}
-
 DOCS="CHANGELOG.md LICENSE README.md"
 
 if [ "$ARCH" = "i586" ]; then
