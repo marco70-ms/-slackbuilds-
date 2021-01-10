@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for baka-mplayer
+# Written by Marcin slociu@wp.pl
+
 PRGNAM=baka-mplayer
 SRCNAM=Baka-MPlayer
 VERSION=${VERSION:-2.0.4}
