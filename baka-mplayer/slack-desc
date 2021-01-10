@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+           |-----handy-ruler------------------------------------------------------|
+baka-mplayer: baka-mplayer (A media player with UI using libmpv)
+baka-mplayer:
+baka-mplayer: Baka MPlayer is a libmpv-based multimedia player. It supports gesture
+baka-mplayer: seeking, desktop dimming, hardware accelerated playback (vdpau,
+baka-mplayer: vaapi, vda) and Youtube playback support (and others).
+baka-mplayer:
+baka-mplayer:
+baka-mplayer:
+baka-mplayer:
+baka-mplayer:
+baka-mplayer: Homepage: http://bakamplayer.u8sand.net/
