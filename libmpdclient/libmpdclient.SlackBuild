@@ -5,6 +5,8 @@ VERSION=${VERSION:-2.19}
 BUILD=${BUILD:-1}
 TAG=${TAG:-ms}
 
+NUMJOBS=${NUMJOBS:-" -j$(expr $(nproc) + 1) "}
+
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
     i?86) ARCH=i586 ;;
