@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for celluloid
+# Written by Marcin slociu@wp.pl
+
 PRGNAM=celluloid
 VERSION=${VERSION:-0.20}
 BUILD=${BUILD:-1}
