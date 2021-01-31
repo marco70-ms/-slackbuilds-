@@ -23,7 +23,6 @@ CWD=$(pwd)
 TMP=${TMP:-/tmp/txz}
 PKG=$TMP/package-$PRGNAM
 
-
 if [ "$ARCH" = "i586" ]; then
   SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
