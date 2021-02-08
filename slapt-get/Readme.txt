@@ -1,6 +1,7 @@
 https://github.com/jaos/slapt-get
 
 My config file:
+
 /etc/slapt-get/slapt-getrc
 
 # Working directory for local storage/cache.
