@@ -4,7 +4,7 @@
 # Written by Marcin <slociu@wp.pl>
 
 PRGNAM=libburn
-VERSION=${VERSION:-1.5.2}
+VERSION=${VERSION:-1.5.4}
 BUILD=${BUILD:-1}
 TAG=${TAG:-ms}
 
