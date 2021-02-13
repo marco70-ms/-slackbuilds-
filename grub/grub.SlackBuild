@@ -201,6 +201,7 @@ mkdir -p $PKG/usr/doc/${PKGNAM}-$VERSION
 cp -a \
   AUTHORS BUGS COPYING* INSTALL NEWS README* THANKS TODO \
   $PKG/usr/doc/${PKGNAM}-$VERSION
+cat $CWD/${PKGNAM}.SlackBuild > $PKG/usr/doc/${PKGNAM}-$VERSION/${PKGNAM}.SlackBuild
 
 # Compress and if needed symlink the man pages:
 if [ -d $PKG/usr/man ]; then
