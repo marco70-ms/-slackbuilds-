@@ -29,7 +29,7 @@ PKGNAM=grub
 VERSION=${VERSION:-$(echo $PKGNAM-*.tar.xz | rev | cut -f 3- -d . | cut -f 1 -d - | rev)}
 # Better to use _ than ~ in the package filenames version:
 PKGVER=$(echo $VERSION | tr '~' '_')
-BUILD=${BUILD:-3}  # mkdevicemap restore, DejaVuSans font
+BUILD=${BUILD:-4}  # mkdevicemap restore, DejaVuSans font, Ubuntu gcc
 TAG="ms"
 UNIFONT_VER="13.0.05"
 
@@ -118,6 +118,9 @@ zcat $CWD/0198-align-struct-efi_variable-better.patch.gz | patch -p1 --verbose |
 # Restore grub mkdevicemap
 zcat $CWD/restore-mkdevicemap.patch.gz | patch -p1 --verbose || exit 1
 
+# Fix GRUB i386-pc build with Ubuntu gcc
+zcat $CWD/0001-build-Fix-GRUB-i386-pc-build-with-Ubuntu-gcc.patch.gz | patch -p1 --verbose || exit 1
+
 # Fix DejaVuSans.ttf location so that grub-mkfont can create *.pf2 files for starfield theme...
 sed 's|/usr/share/fonts/dejavu|/usr/share/fonts/dejavu /usr/share/fonts/TTF|g' -i "configure.ac"
 
@@ -126,7 +129,7 @@ sed 's|/usr/share/fonts/dejavu|/usr/share/fonts/dejavu /usr/share/fonts/TTF|g' -
 gzip -cd $CWD/unifont-${UNIFONT_VER}.bdf.gz > unifont.bdf
 
 # Regenerate build system to fix dependency on outdated automake:
-./bootstrap
+autoreconf -vif
 
 build_grub() {
   EFI_DO="$*"
