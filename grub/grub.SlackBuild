@@ -121,6 +121,9 @@ zcat $CWD/restore-mkdevicemap.patch.gz | patch -p1 --verbose || exit 1
 # Fix GRUB i386-pc build with Ubuntu gcc
 zcat $CWD/0001-build-Fix-GRUB-i386-pc-build-with-Ubuntu-gcc.patch.gz | patch -p1 --verbose || exit 1
 
+# Patch to NLS installation...
+zcat $CWD/0005-grub-install-fix-inverted-test-for-NLS-enabled-when-.patch.gz | patch -p1 --verbose || exit 1
+
 # Fix DejaVuSans.ttf location so that grub-mkfont can create *.pf2 files for starfield theme...
 sed 's|/usr/share/fonts/dejavu|/usr/share/fonts/dejavu /usr/share/fonts/TTF|g' -i "configure.ac"
 
