@@ -213,7 +213,6 @@ if [ ! -z $MOZLOCALIZE ]; then
   LOC_URL="http://ftp.mozilla.org/pub/firefox/candidates/$RELEASEVER-candidates/build1/l10n_changesets.txt"
   LOC_COMMIT=$(wget -q -O - $LOC_URL | grep ^$MOZLOCALIZE | cut -d\  -f2)
   hg clone https://hg.mozilla.org/l10n-central/$MOZLOCALIZE -r $LOC_COMMIT || exit 1
-#  hg clone https://hg.mozilla.org/releases/l10n/mozilla-release/$MOZLOCALIZE -r $LOC_COMMIT || exit 1
 fi
 
 # Patch mimeTypes.rdf
