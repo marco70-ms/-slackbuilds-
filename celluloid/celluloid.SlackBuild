@@ -4,7 +4,7 @@
 # Written by Marcin slociu@wp.pl
 
 PRGNAM=celluloid
-VERSION=${VERSION:-0.20}
+VERSION=${VERSION:-0.21}
 BUILD=${BUILD:-1}
 TAG=${TAG:-ms}
 
