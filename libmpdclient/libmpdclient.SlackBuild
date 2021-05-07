@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for libmpdclient
+# Written by Marcin slociu@wp.pl
+
 PRGNAM=libmpdclient
 VERSION=${VERSION:-2.19}
 BUILD=${BUILD:-1}
