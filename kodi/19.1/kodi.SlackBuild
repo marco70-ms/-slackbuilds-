@@ -1,0 +1,129 @@
+#!/bin/sh
+
+PRGNAM=kodi
+VERSION=${VERSION:-19.1}
+LIBDVDCSS_VERSION=${LIBDVDCSS_VERSION:-1.4.2-Leia-Beta-5}
+LIBDVDNAV_VERSION=${LIBDVDNAV_VERSION:-6.0.0-Leia-Alpha-3}
+LIBDVDREAD_VERSION=${LIBDVDREAD_VERSION:-6.0.0-Leia-Alpha-3}
+FFMPEG_VERSION=${FFMPEG_VERSION:-4.3.2-Matrix-19.1}
+CROSSGUID_VERSION=${CROSSGUID_VERSION:-8f399e8bd4}
+FSTRCMP_VERSION=${FSTRCMP_VERSION:-0.7.D001}
+FLATBUFFERS_VERSION=${FLATBUFFERS_VERSION:-1.12.0}
+FMT_VERSION=${FMT_VERSION:-6.1.2}
+SPDLOG_VERSION=${SPDLOG_VERSION:-1.5.0}
+UDFREAD_VERSION=${UDFREAD_VERSION:-1.1.0}
+BUILD=${BUILD:-1}
+TAG=${TAG:-ms}
+
+NUMJOBS=${NUMJOBS:-" -j$(expr $(nproc) + 1) "}
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i586 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/txz}
+PKG=$TMP/package-$PRGNAM
+
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
+  LIBDIRSUFFIX=""
+elif [ "$ARCH" = "i686" ]; then
+  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
+  LIBDIRSUFFIX=""
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2 -fPIC"
+  LIBDIRSUFFIX="64"
+else
+  SLKCFLAGS="-O2"
+  LIBDIRSUFFIX=""
+fi
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM-$VERSION.tar.xz || exit 1
+cd $PRGNAM-$VERSION
+chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+
+# this causes issues for the official iOS app
+# see: https://github.com/xbmc/Official-Kodi-Remote-iOS/issues/95
+#patch -p1 < $CWD/patches/0001-Revert-jsonrpc-remove-ambiguous-and-duplicate-Player.patch || exit 1
+## archlinux patch kodi-git
+#patch -p1 < $CWD/patches/cheat-sse-build.patch || exit 1
+# allow separate windowing binaries being launched from kodi wrapper
+patch -p1 < $CWD/patches/0001-allow-separate-windowing-binaries-being-launched-fro.patch || exit 1
+
+mkdir -p build
+cd build
+  cmake .. \
+    -DCMAKE_C_FLAGS:STRING="$SLKCFLAGS" \
+    -DCMAKE_CXX_FLAGS:STRING="$SLKCFLAGS" \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_LIBDIR=/usr/lib${LIBDIRSUFFIX} \
+    -DCORE_PLATFORM_NAME="x11 wayland gbm" \
+    -DAPP_RENDER_SYSTEM=gl \
+    -DENABLE_EVENTCLIENTS=ON \
+    -DENABLE_DEBUGFISSION=OFF \
+    -GNinja \
+    -DENABLE_INTERNAL_FFMPEG=ON \
+    -DENABLE_INTERNAL_FMT=ON \
+    -DENABLE_INTERNAL_CROSSGUID=ON \
+    -DENABLE_INTERNAL_FSTRCMP=ON \
+    -DENABLE_INTERNAL_FLATBUFFERS=ON \
+    -DENABLE_INTERNAL_SPDLOG=ON \
+    -DENABLE_INTERNAL_UDFREAD=ON \
+    -DLIBDVDCSS_URL=$CWD/libdvdcss-$LIBDVDCSS_VERSION.tar.gz \
+    -DLIBDVDNAV_URL=$CWD/libdvdnav-$LIBDVDNAV_VERSION.tar.gz \
+    -DLIBDVDREAD_URL=$CWD/libdvdread-$LIBDVDREAD_VERSION.tar.gz \
+    -DFFMPEG_URL=$CWD/FFmpeg-$FFMPEG_VERSION.tar.gz \
+    -DFMT_URL=$CWD/fmt-$FMT_VERSION.tar.gz \
+    -DCROSSGUID_URL=$CWD/crossguid-$CROSSGUID_VERSION.tar.gz \
+    -DFSTRCMP_URL=$CWD/fstrcmp-$FSTRCMP_VERSION.tar.gz \
+    -DFLATBUFFERS_URL=$CWD/flatbuffers-$FLATBUFFERS_VERSION.tar.gz \
+    -DSPDLOG_URL=$CWD/spdlog-$SPDLOG_VERSION.tar.gz \
+    -DUDFREAD_URL=$CWD/libudfread-$UDFREAD_VERSION.tar.gz \
+    -DCMAKE_BUILD_TYPE=Release \
+    2>&1 | tee $CWD/configure-${PRGNAM}.log
+    
+  ninja $NUMJOBS 2>&1 | tee $CWD/ninja-${PRGNAM}.log
+  DESTDIR=$PKG ninja install || exit 1
+cd -
+
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+ 
+mkdir -p $PKG/usr/man/man1
+for i in $PRGNAM.bin.1 $PRGNAM.1 $PRGNAM-standalone.1; do
+  install -m 0644 docs/manpages/$i $PKG/usr/man/man1/$i
+done
+
+if [ -d $PKG/usr/man ]; then
+  find $PKG/usr/man -type f -name "*.?" -exec gzip -9f {} \;
+  for i in $(find $PKG/usr/man -type l -name "*.?") ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
+fi
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a tools/EventClients/README.txt LICENSE.* README* \
+ $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
+cat $CWD/slack-required > $PKG/install/slack-required
+
+cd $PKG
+/sbin/makepkg -l y -c n $CWD/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-txz}
