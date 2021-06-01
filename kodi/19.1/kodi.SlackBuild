@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for kodi
+# Written by Marcin <slociu@wp.pl>
+
 PRGNAM=kodi
 VERSION=${VERSION:-19.1}
 LIBDVDCSS_VERSION=${LIBDVDCSS_VERSION:-1.4.2-Leia-Beta-5}
