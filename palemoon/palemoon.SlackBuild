@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Slackware build script for palemoon
+# Written by Marcin slociu@wp.pl
+
 PRGNAM=palemoon
 VERSION=${VERSION:-29.4.1}
 SRCNAM1=${SRCNAM1:-$PRGNAM-${VERSION}-source}
