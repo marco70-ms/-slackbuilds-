@@ -4,7 +4,7 @@
 # Written by Marcin <slociu@wp.pl>
 
 PRGNAM=hwinfo
-VERSION=${VERSION:-21.71}
+VERSION=${VERSION:-21.78}
 BUILD=${BUILD:-1}
 TAG=${TAG:-ms}
 
