@@ -10,11 +10,11 @@ name = Slackware System
 [slack-site]
 type = slack-site
 name = Slackware Site
-baseurl = http://ftp.slackware.com/pub/slackware/slackware64-current/
+baseurl = http://ftp.slackware.com/pub/slackware/slackware64-15.0/
 enabled = yes
 
 [slack-site-patches]
 type = slack-site
 name = Slackware Patches
-baseurl = http://ftp.slackware.com/pub/slackware/slackware64-current/patches/
+baseurl = http://ftp.slackware.com/pub/slackware/slackware64-15.0/patches/
 enabled = yes
