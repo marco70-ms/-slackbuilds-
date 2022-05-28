@@ -15,7 +15,7 @@ EXCLUDE=grub,^aaa_elflibs,^devs,^glibc-.*,^kernel-.*,^udev,.*-[0-9]+dl$,i[3456]8
 # Base url to directory with a PACKAGES.TXT.
 # This can point to any release, ie: 9.0, 10.0, current, etc.
 #SOURCE=ftp://ftp.slackware.com/pub/slackware/slackware-14.2/:OFFICIAL
-SOURCE=http://ftp.slackware.pl/pub/slackware/slackware64-current/:OFFICIAL
+SOURCE=http://ftp.slackware.pl/pub/slackware/slackware64-15.0/:OFFICIAL
 #SOURCE=ftp://ftp.gwdg.de/pub/linux/slackware/slackware64-current/:OFFICIAL
 
 # Sources for the testing, extra, and pasture areas - if you use them.
