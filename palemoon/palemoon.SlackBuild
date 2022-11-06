@@ -3,12 +3,18 @@
 # Slackware build script for palemoon
 # Written by Marcin slociu@wp.pl
 
+cd $(dirname $0) ; CWD=$(pwd)
+
 PRGNAM=palemoon
-VERSION=${VERSION:-29.4.1}
-SRCNAM1=${SRCNAM1:-$PRGNAM-${VERSION}-source}
-SRCNAM2=${SRCNAM2:-pale-moon}
+VERSION=${VERSION:-31.2.0}
+SRCNAM1=${SRCNAM1:-Pale-Moon-${VERSION}_Release}
+SRCNAM2=${SRCNAM2:-UXP-RB_20220802}
 BUILD=${BUILD:-1}
 TAG=${TAG:-ms}
+PKGTYPE=${PKGTYPE:-txz}
+
+DOCS="AUTHORS LICENSE README.md"
+DOCS_GRE="AUTHORS LEGAL SECURITY.md"
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -18,7 +24,14 @@ if [ -z "$ARCH" ]; then
   esac
 fi
 
-CWD=$(pwd)
+# If the variable PRINT_PACKAGE_NAME is set, then this script will report what
+# the name of the created package would be, and then exit. This information
+# could be useful to other scripts.
+if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+  echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
+  exit 0
+fi
+
 TMP=${TMP:-/tmp/txz}
 PKG=$TMP/package-$PRGNAM
 
@@ -56,13 +69,14 @@ fi
 # master trunck of the Pale Moon github repository.
 BRANDING=${BRANDING:---enable-official-branding}
 if [ "$BRANDING" = "NewMoon" ]; then
-	BRANDING="--disable-official-branding --with-branding=palemoon/branding/unofficial"
-elif [ "$BRANDING" = "unstable" ]; then
-	BRANDING="--disable-official-branding --with-branding=palemoon/branding/unstable"
+     BRANDING="--disable-official-branding --with-branding=browser/branding/unofficial"
+elif
+  [ "$BRANDING" = "unstable" ]; then
+    BRANDING="--disable-official-branding --with-branding=other-licenses/branding/palemoon/unstable"
 fi
 
-rm -rf $PKG $TMP/gold $TMP/$OBJ $TMP/$SRCNAM2
-mkdir -p $TMP $PKG $TMP/$SRCNAM2 $TMP/gold $TMP/$OBJ
+rm -rf $PKG $TMP/gold $TMP/$OBJ
+mkdir -p $TMP $PKG $TMP/gold $TMP/$OBJ
 
 DEBUG=" --enable-strip --disable-debug --disable-debug-symbols --enable-release"
 if [ "${ENABLE_DEBUG:-no}" = "yes" ]; then
@@ -86,7 +100,7 @@ set -e
 # (Taken from Slackware's Firefox build Script)
 cd $TMP
 rm -rf autoconf-2.13
-tar xvf $CWD/autoconf-2.13.tar.xz
+tar xvf $CWD/autoconf-2.13.tar.xz || exit 1
 cd autoconf-2.13
 zcat $CWD/autoconf-2.13-consolidated_fixes-1.patch.gz | patch -p1 --verbose
 chown -R root:root .
@@ -118,20 +132,17 @@ make install
 PATH=$TMP/autoconf-tmp/usr/bin:$PATH
 
 # Build Pale Moon
-cd $TMP/$SRCNAM2
-rm -rf $TMP/$SRCNAM2/*
-tar -xvf $CWD/$SRCNAM1.tar.xz || exit 1
+cd $TMP
+rm -rf $SRCNAM1
+tar -xvf $CWD/$SRCNAM1.tar.gz --transform="flags=r;s/pale-moon/$SRCNAM1/"
+cd $SRCNAM1
+tar -xvf $CWD/$SRCNAM2.tar.gz --transform="flags=r;s/uxp/platform/"
+
+#patch -p1 < $CWD/0001-Issue-7-Add-GCC-11-initial-support.patch || exit 1
 
 if [ "${ADNAUSEAM:-block}" = "unblock" ]; then
 	patch -p1 < $CWD/adNauseam-unblock.patch
 fi
-
-# Selectively APPLY patch for glibc 2.30+
-if [ "${PATCH_GLIBC:-no}" = "yes" ]; then
-	patch -p0 < $CWD/glibc-2.30+.patch
-fi
-
-zcat $CWD/Fix_build_GCC11.patch.gz | patch -p1 --verbose || exit 1
 
 chown -R root:root .
 find -L . \
@@ -144,7 +155,7 @@ find -L . \
 # "UnicodeDecodeError: 'ascii' codec can't decode byte 0xe2 in position 36: ordinal not in range(128)"
 export LANG=C
 
-export MOZCONFIG="$TMP/$SRCNAM2/.mozconfig"
+export MOZCONFIG="$TMP/$SRCNAM1/.mozconfig"
 export MOZILLA_OFFICIAL=1
 export MOZ_MAKE_FLAGS=$MAKEFLAGS
 export CFLAGS="$SLKCFLAGS"
@@ -155,6 +166,8 @@ export MOZ_REQUIRE_SIGNING=
 export MOZ_TELEMETRY_REPORTING=
 export PYTHON=/usr/bin/python2
 
+# A stale DBUS_SESSION_BUS_ADDRESS var can cause build failures
+unset DBUS_SESSION_BUS_ADDRESS
 
 # Dev tools are enabled by default in the official binaries, so we should do the same here;
 # passing DEVTOOLS=no to the script, however, will disable them.
@@ -173,20 +186,15 @@ OPTIONS="\
   --libdir=/usr/lib${LIBDIRSUFFIX} \
   --with-default-mozilla-five-home=/usr/lib${LIBDIRSUFFIX}/$PRGNAM-$VERSION \
   --x-libraries=/usr/lib${LIBDIRSUFFIX} \
-  --enable-application=$PRGNAM \
   --enable-default-toolkit=cairo-$GTK \
-  --enable-jemalloc \
-  --enable-av1 \
+  --disable-accessibility \
   $DEBUG \
   $DEVTOOLS \
-  --disable-eme \
-  --disable-webrtc \
-  --disable-gamepad \
-  --disable-tests \
-  --disable-accessibility \
+  --enable-application=$PRGNAM \
   --disable-crashreporter \
-  --disable-necko-wifi \
   --disable-updater \
+  --disable-tests \
+  --enable-jemalloc \
   --with-pthreads"
 
 echo "mk_add_options MOZ_OBJDIR=$TMP/$OBJ" > .mozconfig
@@ -201,13 +209,12 @@ echo "ac_add_options --disable-pulseaudio" >> .mozconfig; fi
 if pkg-config --exists jack && [ "${BLACKLIST_JACK:-no}" != "yes" ]; then
 echo "ac_add_options --enable-jack" >> .mozconfig; fi
 
-sed -i 's/.\/platform\/mach/"python2\ .\/platform\/mach"/g' mach
-./mach build 2>&1 | tee $CWD/make-${PRGNAM}.log
+./mach build
 
 ## Clean up; and package Pale Moon.
+DESTDIR=$PKG ./mach install
 mkdir -p $PKG/usr/lib${LIBDIRSUFFIX}/mozilla/plugins
 cd $TMP/$OBJ
-make install DESTDIR=$PKG
 
 cd $PKG
 
@@ -239,14 +246,17 @@ ln -s /usr/lib${LIBDIRSUFFIX}/$PRGNAM-$VERSION/browser/icons/mozicon128.png \
 mkdir -p $PKG/usr/share/applications
 cat $CWD/palemoon.desktop > $PKG/usr/share/applications/$PRGNAM.desktop
 
-mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a \
-  $TMP/$SRCNAM2/platform/LEGAL $TMP/$SRCNAM2/LICENSE $TMP/$SRCNAM2/README.md $TMP/$SRCNAM2/AUTHORS \
-  $PKG/usr/doc/$PRGNAM-$VERSION/
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION/GRE
+for i in $DOCS; do
+  cp  $TMP/$SRCNAM1/$i $PKG/usr/doc/$PRGNAM-$VERSION
+done
+for i in $DOCS_GRE; do
+  cp $TMP/$SRCNAM1/platform/$i $PKG/usr/doc/$PRGNAM-$VERSION/GRE/
+done
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
 cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
-/sbin/makepkg -l y -c n $CWD/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-txz}
+/sbin/makepkg -l y -c n $CWD/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE
