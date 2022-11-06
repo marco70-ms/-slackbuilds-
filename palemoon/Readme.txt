@@ -1,1 +1,1 @@
-http://archive.palemoon.org/source/palemoon-29.4.1-source.tar.xz
+https://repo.palemoon.org/MoonchildProductions/Pale-Moon/archive/31.2.0_Release.tar.gz
